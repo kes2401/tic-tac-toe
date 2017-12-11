@@ -1,0 +1,84 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	background-color: #34495e;
+	height: 100vh;
+}
+
+body {
+	font-family: 'Kalam', cursive;
+	color: #fff;
+}
+
+.heading {
+	text-align: center;
+	margin-top: 50px;
+}
+
+table {
+	font-family: 'Permanent Marker', cursive;
+	font-size: 65px;
+	border-collapse: collapse;
+	position: absolute;
+	margin-top: 50px;
+	left: 50%;
+	margin-left: -152.5px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.cell {
+	height: 100px;
+	width: 100px;
+}
+
+.midcol {
+	border-left: 2.5px solid #fff;
+	border-right: 2.5px solid #fff;
+}
+
+.midrow {
+	border-top: 2.5px solid #fff;
+	border-bottom: 2.5px solid #fff;
+}
+
+.modal {
+	background-color: #2ecc71;
+	border-radius: 8px;
+	text-align: center;
+	height: 160px;
+	width: 200px;
+	margin: 0 auto;
+	margin-top: 120px;
+	font-size: 2rem;
+	box-shadow:0 5px 10px rgba(0,0,0,0.3);
+	position: relative;
+	z-index: 10;
+	/*display: none;*/
+}
+
+p.winnerText {
+	line-height: 150%;
+	position: relative;
+	top: 12px;
+}
+
+.replay-btn {
+	height: 30px;
+	width: 80px;
+	border-radius: 12px;
+	outline: none;
+	background-color: #2ecc71;
+	border: 2px solid #fff;
+	color: #fff;
+	transition: all .15s ease-in-out;
+}
+
+.replay-btn:hover {
+	background-color: #fff;
+	color: #2ecc71;
+}

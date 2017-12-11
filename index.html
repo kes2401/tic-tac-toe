@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+	<!-- Tic-Tac-Toe game -->
+<html lang="en">
+    <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="author" content="Keith Scully" />
+		<meta charset="utf-8" />
+		<link href="https://fonts.googleapis.com/css?family=Kalam|Permanent+Marker" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="style.css" />
+        <title>Tic Tac Toe</title>
+    </head>
+    <body>
+
+    	<h1 class="heading">Tic Tac Toe</h1>
+    	
+		<table>
+			<tr>
+				<td class="cell" id="0">O</td>
+				<td class="cell midcol" id="1">X</td>
+				<td class="cell" id="2"></td>
+			</tr>
+			<tr class="midrow">
+				<td class="cell" id="3"></td>
+				<td class="cell midcol" id="4"></td>
+				<td class="cell" id="5"></td>
+			</tr>
+			<tr>
+				<td class="cell" id="6"></td>
+				<td class="cell midcol" id="7"></td>
+				<td class="cell" id="8"></td>
+			</tr>
+		</table>
+
+
+		<div class="modal modal-lose">
+			<p class="winnerText">You</p>
+			<p class="winnerText result">Win!</p>
+			<button class="replay-btn">Replay</button>
+		</div>			
+	
+	
+	<script type="text/javascript" src="script.js" ></script>
+    </body>
+</html>
