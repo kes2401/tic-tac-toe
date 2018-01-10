@@ -38,6 +38,8 @@ $(document).ready(function(){
                 allShots.push(currentShot);
                 playerShots.push(currentShot);
                             
+                console.log('player shots: ' + playerShots);
+
                 // check against shots played against winning combinations, but only after 3 shots are taken
                 if(playerShots.length >= 3){
                     // check if there's a winner
@@ -71,13 +73,34 @@ $(document).ready(function(){
     };
 
     function cpuPlay(){
-        // code for taking the computer's turn
         if(!playerTurn && inPlay){
-            currentShot = 0; // --- SET CODE TO SELECT COMPUTER'S CELL
+
+            // code for taking the computer's turn
+            // simple random choice algorithm for now...
+            currentShot = random();
+            
+            function random(){
+                var possibleShot = Math.floor(Math.random() * 8);
+                console.log('poss shot is: ' + possibleShot + ' . Checking...');
+                if(possibleShot >= 0 && possibleShot <= 8 && allShots.indexOf(String(possibleShot)) != -1){
+                    random();
+                } else {
+                    return possibleShot;
+                }
+                
+            }; // -------- DEBUG: Computer is taking 'undefind' shot... and other weird stuff happening --------
+
+            console.log('computer shot is: ' + currentShot);
+            
+
             if(allShots.indexOf(currentShot) === -1){
-                (this).innerHTML = cpuToken;
-                allShots.push(currentShot);
-                cpuShots.push(currentShot);
+                $('#'+currentShot).innerHTML = cpuToken; // ***UPDATE 'this' to cpu player's selected cell
+                allShots.push(String(currentShot));
+                cpuShots.push(String(currentShot));
+
+                console.log('cpu shots: ' + cpuShots);
+
+                
                 if(cpuShots.length >= 3){
                     checkWinCombos(cpuShots);
                     if(winner){
