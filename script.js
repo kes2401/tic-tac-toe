@@ -12,8 +12,8 @@ $(document).ready(function(){
         [1, 4, 7]
     ];
 
-    var playerToken = 'X';
-    var cpuToken = 'O';
+    var playerToken;
+    var cpuToken;
 
     var playerShots = []; // holds all shots played by the user
     var cpuShots = []; // holds all shots played by the computer
@@ -25,7 +25,9 @@ $(document).ready(function(){
     var winner; // set to true if there is a winner then the game ends
     var inPlay; // determines whether the game is in play
 
-    init();
+    window.setTimeout(function(){
+        init();
+    }, 1500);
 
     // event handler for user to take their turn on a cell
     $('.cell').on('click', function(){
@@ -70,13 +72,29 @@ $(document).ready(function(){
 
     });
 
+    function chooseToken(){
+        // make the new game modal pop up
+        $('.tokens').removeClass('removePopup');
+        // set event handler for token choice buttons - pick token, remove modal, then play
+        $('.token').on('click', function(){
+            playerToken = $(this).attr('id');
+            if(playerToken === 'X'){
+                cpuToken = 'O';
+            } else {
+                cpuToken = 'X';
+            }
+            inPlay = true;
+            playerTurn = true;
+            $('.tokens').addClass('removePopup');
+        });       
+    }
+
     function init(){
         winner = false;
-        inPlay = true;
-        playerTurn = true;
         playerShots = [];
         cpuShots = []; 
         allShots = [];
+        chooseToken();
     }
 
     function checkWinCombos(arr){
@@ -135,6 +153,4 @@ $(document).ready(function(){
             }
         }
     }
-
-
 });
