@@ -143,7 +143,7 @@ $(document).ready(function(){
                     if(winner){
                         window.setTimeout(function(){
                             $('.modal').removeClass('removePopup');
-                            $('.modal').css('background-color','#a31a1a');
+                            $('.modal').css('background-color','#c0392b');
                             $('.resultText').text('Lose...');
                         }, 250);
                     } 
