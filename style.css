@@ -46,8 +46,13 @@ table {
 	border-bottom: 2.5px solid #fff;
 }
 
+
+/* MODAL */ 
+.removePopup {
+	display: none;
+}
+
 .modal {
-	background-color: #2ecc71;
 	border-radius: 8px;
 	text-align: center;
 	height: 160px;
@@ -58,13 +63,13 @@ table {
 	box-shadow:0 5px 10px rgba(0,0,0,0.3);
 	position: relative;
 	z-index: 10;
-	display: none;
 }
 
-p.winnerText {
+p.resultText {
 	line-height: 150%;
-	position: relative;
-	top: 12px;
+	position: absolute;
+	top: 30px;
+	left: 34%;
 }
 
 .replay-btn {
@@ -72,13 +77,20 @@ p.winnerText {
 	width: 80px;
 	border-radius: 12px;
 	outline: none;
-	background-color: #2ecc71;
+	background-color: transparent;
 	border: 2px solid #fff;
 	color: #fff;
 	transition: all .15s ease-in-out;
+	position: absolute;
+	top: 80px;
+	left: 30%;
 }
 
 .replay-btn:hover {
 	background-color: #fff;
-	color: #2ecc71;
+	color: #adadad;
+}
+
+.tokens {
+	
 }

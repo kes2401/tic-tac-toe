@@ -34,12 +34,10 @@ $(document).ready(function(){
             // get id of selected cell, check if available, and if so mark the cell and pass id to an array of shots played
             currentShot = $(this).attr('id');
             if(allShots.indexOf(currentShot) === -1){
-                (this).innerHTML = playerToken;
+                this.innerHTML = playerToken;
                 allShots.push(currentShot);
                 playerShots.push(currentShot);
-                            
-                console.log('player shots: ' + playerShots);
-
+                        
                 // check against shots played against winning combinations, but only after 3 shots are taken
                 if(playerShots.length >= 3){
                     // check if there's a winner
@@ -47,19 +45,38 @@ $(document).ready(function(){
 
                     // if there's a winner then end game and show modal
                     if(winner){
-                        alert("You WON!!!");
+                        window.setTimeout(function(){
+                            $('.modal').removeClass('removePopup');
+                            $('.modal').css('background-color','#2ecc71');
+                            $('.resultText').text('Win!');
+                        }, 250);
                     } 
                 }
             playerTurn = false;
+            checkDraw();
             cpuPlay();
             }
         };
+    });
+
+    $('.replay-btn').on('click', function(){
+        //remove modal
+        $('.modal').addClass('removePopup');
+        //clear game board
+        $('.cell').text('');
+        //reset game variables
+        init()
+        //pick tokens
+
     });
 
     function init(){
         winner = false;
         inPlay = true;
         playerTurn = true;
+        playerShots = [];
+        cpuShots = []; 
+        allShots = [];
     }
 
     function checkWinCombos(arr){
@@ -72,48 +89,52 @@ $(document).ready(function(){
         });   
     };
 
+    function checkDraw(){
+        if(allShots.length === 9 && !winner){
+            inPlay = false;
+            window.setTimeout(function(){
+                $('.modal').removeClass('removePopup');
+                $('.modal').css('background-color','#0b8ca5');
+                $('.resultText').text('Draw');
+            }, 250);
+        }
+    }
+
     function cpuPlay(){
         if(!playerTurn && inPlay){
-
             // code for taking the computer's turn
             // simple random choice algorithm for now...
-            currentShot = random();
-            
             function random(){
-                var possibleShot = Math.floor(Math.random() * 8);
-                console.log('poss shot is: ' + possibleShot + ' . Checking...');
-                if(possibleShot >= 0 && possibleShot <= 8 && allShots.indexOf(String(possibleShot)) != -1){
-                    random();
+                var possibleShot = Math.floor(Math.random() * 9);
+                if(!allShots.includes(String(possibleShot))){
+                    currentShot = possibleShot;
                 } else {
-                    return possibleShot;
-                }
-                
-            }; // -------- DEBUG: Computer is taking 'undefind' shot... and other weird stuff happening --------
+                    random();
+                }  
+            };
 
-            console.log('computer shot is: ' + currentShot);
-            
+            random();
 
-            if(allShots.indexOf(currentShot) === -1){
-                $('#'+currentShot).innerHTML = cpuToken; // ***UPDATE 'this' to cpu player's selected cell
+            if(allShots.indexOf(String(currentShot)) === -1){
+                $('#'+currentShot).text(cpuToken);
                 allShots.push(String(currentShot));
                 cpuShots.push(String(currentShot));
-
-                console.log('cpu shots: ' + cpuShots);
-
                 
                 if(cpuShots.length >= 3){
                     checkWinCombos(cpuShots);
                     if(winner){
-                        alert("You Lost...");
+                        window.setTimeout(function(){
+                            $('.modal').removeClass('removePopup');
+                            $('.modal').css('background-color','#a31a1a');
+                            $('.resultText').text('Lose...');
+                        }, 250);
                     } 
                 }
+            checkDraw();
             playerTurn = true;
             }
         }
     }
-
-
-
 
 
 });
