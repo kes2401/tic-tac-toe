@@ -27,7 +27,7 @@ $(document).ready(function(){
 
     window.setTimeout(function(){
         init();
-    }, 1500);
+    }, 1000);
 
     // event handler for user to take their turn on a cell
     $('.cell').on('click', function(){
@@ -56,7 +56,9 @@ $(document).ready(function(){
                 }
             playerTurn = false;
             checkDraw();
-            cpuPlay();
+            window.setTimeout(function(){
+               cpuPlay();
+            }, 500); 
             }
         };
     });
